@@ -3,10 +3,12 @@ package com.example.lab04arias
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -14,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.lab04arias.ui.theme.Lab04AriasTheme // ✅ Cambiado el import del theme
+import com.example.lab04arias.ui.theme.Lab04AriasTheme // ✅ Import corregido
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyLazyRow() // ✅ Componente LazyRow
+                    MyLazyVerticalGrid()
                 }
             }
         }
@@ -33,26 +35,34 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyLazyRow() {
+fun MyLazyVerticalGrid() {
     val items = (1..50).map { "Item $it" }
 
-    LazyRow(
-        modifier = Modifier.fillMaxSize()
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(3),
+        modifier = Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(items) { item ->
-            Text(
-                text = item,
-                modifier = Modifier.padding(16.dp)
-            )
+            Surface(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(
+                    text = item,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun LazyRowPreview() {
+fun GridPreview() {
     Lab04AriasTheme {
-        MyLazyRow()
+        MyLazyVerticalGrid()
     }
 }
 
