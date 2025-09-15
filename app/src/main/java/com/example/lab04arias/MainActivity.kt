@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.lab04arias.ui.theme.Lab04AriasTheme // ✅ Import corregido
-
+import androidx.compose.foundation.BorderStroke
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +47,8 @@ fun MyLazyVerticalGrid() {
         items(items) { item ->
             Surface(
                 color = MaterialTheme.colorScheme.primaryContainer,
+                shape = MaterialTheme.shapes.medium, // 1. Redondea las esquinas
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
                 modifier = Modifier.padding(8.dp)
             ) {
                 Text(
