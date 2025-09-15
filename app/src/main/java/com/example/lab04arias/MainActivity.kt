@@ -52,7 +52,7 @@ fun MyLazyVerticalGrid() {
                 modifier = Modifier.padding(8.dp)
             ) {
                 Text(
-                    text = item,
+                    Text(text = "Hola, soy el cambio desde mi Laptop") // <-- Tu cambio local
                     modifier = Modifier.padding(16.dp)
                 )
             }
